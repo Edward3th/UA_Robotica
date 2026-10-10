@@ -1,4 +1,5 @@
-// Enciende y apaga el LED integrado del Arduino cada segundo.
+// Enciende y apaga el LED integrado del NodeMCU cada segundo.
+// En el ESP8266 este LED funciona al revés: LOW lo enciende, HIGH lo apaga.
 const int LED = LED_BUILTIN;
 
 void setup() {
@@ -6,8 +7,8 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(LED, HIGH);
+  digitalWrite(LED, LOW);   // encendido
   delay(1000);
-  digitalWrite(LED, LOW);
+  digitalWrite(LED, HIGH);  // apagado
   delay(1000);
 }

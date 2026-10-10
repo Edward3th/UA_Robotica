@@ -5,7 +5,10 @@ desde el diseño del chasis hasta la app del celular.
 
 **Libro:** [Introduccion-a-la-Robotica.pdf](Introduccion-a-la-Robotica.pdf)
 
-## Código (Arduino UNO)
+**Hardware:** NodeMCU ESP8266 v1.0 (Amica) sobre shield HW-588A, módulo L298N
+para los motores, módulo Bluetooth HC-05, dos servos SG90/MG90S y 4 pilas AA.
+
+## Código (NodeMCU ESP8266)
 
 | Carpeta | Qué hace | Capítulo |
 |---|---|---|
@@ -13,10 +16,32 @@ desde el diseño del chasis hasta la app del celular.
 | [`codigo/cap05-02-motores/`](codigo/cap05-02-motores/) | Funciones de movimiento sobre el módulo L298N | 5 |
 | [`codigo/cap05-03-servos/`](codigo/cap05-03-servos/) | Control de las paletas con rango angular acotado | 5 |
 | [`codigo/rutina-prueba/`](codigo/rutina-prueba/) | Rutina de prueba: los dos motores y los dos servos, en secuencia | 5 |
-| [`codigo/control-bluetooth/`](codigo/control-bluetooth/) | Control del robot por Bluetooth (HC-06), comandos `F` `B` `L` `R` `S` `K` | 6 |
+| [`codigo/control-bluetooth/`](codigo/control-bluetooth/) | Control del robot por Bluetooth (HC-05) con la app de abajo | 6 |
 
-Cada programa está dentro de una carpeta con su mismo nombre, porque el Arduino
-IDE así lo exige. Ábrelo desde esa carpeta, sin moverlo ni renombrarlo.
+- En el Arduino IDE, agrega el paquete del ESP8266 (URL de tarjetas
+  `https://arduino.esp8266.com/stable/package_esp8266com_index.json`) y elige la
+  placa **NodeMCU 1.0 (ESP-12E Module)**.
+- Cada programa está dentro de una carpeta con su mismo nombre, porque el
+  Arduino IDE así lo exige. Ábrelo desde esa carpeta, sin moverlo ni renombrarlo.
+- El HC-05 va a los pines RX/TX del NodeMCU: **desconéctalo antes de subir un
+  programa**.
+
+## App de control (MIT App Inventor)
+
+| Archivo | Para qué sirve |
+|---|---|
+| [`app/App_Robotiza_2.apk`](app/App_Robotiza_2.apk) | App lista para instalar en un celular Android |
+| [`app/App_Robotiza_2.aia`](app/App_Robotiza_2.aia) | Proyecto para abrir y modificar en MIT App Inventor |
+
+| Botón | Envía | Acción |
+|---|---|---|
+| Arriba / abajo / izquierda / derecha | `U` `D` `L` `R` | Avanzar, retroceder, girar |
+| Diagonales | `Q` `E` `Z` `C` | Curvas hacia adelante y hacia atrás |
+| Al soltar cualquier dirección | `S` | Detenerse |
+| A / B | `A` `B` | Patear con la paleta izquierda / derecha |
+
+El menú «Seguidor de líneas» de la app (`I` / `P`) es para otra versión del
+robot y el programa del libro lo ignora.
 
 ## Chasis del autor (STL)
 

@@ -8,3 +8,5 @@
 *.ods binary
 *.png binary
 *.jpg binary
+*.aia binary
+*.apk binary

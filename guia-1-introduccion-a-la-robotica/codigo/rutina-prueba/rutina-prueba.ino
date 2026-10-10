@@ -3,20 +3,20 @@
 #include <Servo.h>
 
 // Motores (módulo L298N, ver Tabla 4.2, Capítulo 4)
-const int ENA = 10, IN1 = 8, IN2 = 9;  // Motor izquierdo
-const int ENB = 5,  IN3 = 6, IN4 = 7;  // Motor derecho
+const int ENA = D8, IN1 = D7, IN2 = D6;  // Motor izquierdo
+const int ENB = D3, IN3 = D5, IN4 = D4;  // Motor derecho
 
 // Servos: paletas tipo pinball (Capítulo 4)
 Servo servoIzquierdo, servoDerecho;
-const int PIN_SERVO_IZQ = 3, PIN_SERVO_DER = 11;
+const int PIN_SERVO_IZQ = D0, PIN_SERVO_DER = D1;
 const int ANGULO_REPOSO = 90;
-const int ANGULO_PATEO = 40;
+const int PATEO_IZQ = 40, PATEO_DER = 140;
 
 const int VELOCIDAD_PRUEBA = 150;
 
 void moverMotor(int in1, int in2, int en, int velocidad, bool adelante) {
-  digitalWrite(in1, adelante ? HIGH : LOW);
-  digitalWrite(in2, adelante ? LOW : HIGH);
+  digitalWrite(in1, adelante ? LOW : HIGH);
+  digitalWrite(in2, adelante ? HIGH : LOW);
   analogWrite(en, velocidad);
 }
 
@@ -45,16 +45,17 @@ void detener() {
   analogWrite(ENB, 0);
 }
 
-void patear(Servo &servo, const char *nombre) {
+void patear(Servo &servo, int anguloPateo, const char *nombre) {
   Serial.print("Pateando: ");
   Serial.println(nombre);
-  servo.write(ANGULO_PATEO);
+  servo.write(anguloPateo);
   delay(200);
   servo.write(ANGULO_REPOSO);
 }
 
 void setup() {
   Serial.begin(9600);
+  analogWriteRange(255);
 
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -62,12 +63,14 @@ void setup() {
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   pinMode(ENB, OUTPUT);
+  detener();
 
-  servoIzquierdo.attach(PIN_SERVO_IZQ);
-  servoDerecho.attach(PIN_SERVO_DER);
+  servoIzquierdo.attach(PIN_SERVO_IZQ, 500, 2400);
+  servoDerecho.attach(PIN_SERVO_DER, 500, 2400);
   servoIzquierdo.write(ANGULO_REPOSO);
   servoDerecho.write(ANGULO_REPOSO);
 
+  Serial.println();
   Serial.println("Rutina de prueba lista.");
 }
 
@@ -96,8 +99,8 @@ void loop() {
   detener();
   delay(500);
 
-  patear(servoIzquierdo, "servo izquierdo");
+  patear(servoIzquierdo, PATEO_IZQ, "servo izquierdo");
   delay(1000);
-  patear(servoDerecho, "servo derecho");
+  patear(servoDerecho, PATEO_DER, "servo derecho");
   delay(2000);
 }

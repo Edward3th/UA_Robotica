@@ -12,7 +12,7 @@ puedes abrir cualquier archivo y descargarlo por separado.
 
 | # | Guía | De qué trata | Descarga |
 |---|---|---|---|
-| 1 | **Introducción a la Robótica** | Un robot futbolista controlado por Bluetooth: diseño CAD, impresión 3D, electrónica, Arduino y App Inventor | [PDF](guia-1-introduccion-a-la-robotica/Introduccion-a-la-Robotica.pdf) · [archivos](guia-1-introduccion-a-la-robotica/) |
+| 1 | **Introducción a la Robótica** | Un robot futbolista controlado por Bluetooth: diseño CAD, impresión 3D, electrónica, NodeMCU ESP8266 y App Inventor | [PDF](guia-1-introduccion-a-la-robotica/Introduccion-a-la-Robotica.pdf) · [archivos](guia-1-introduccion-a-la-robotica/) |
 | 2 | **Robots Articulados** | Brazos robóticos de 2, 3 y 4 grados de libertad: cinemática directa e inversa, actuadores y control por serial con Python y Arduino | [PDF](guia-2-robots-articulados/Robots-Articulados.pdf) · [archivos](guia-2-robots-articulados/) |
 
 ## Contenido
@@ -21,7 +21,8 @@ puedes abrir cualquier archivo y descargarlo por separado.
 UA_Robotica/
 ├── guia-1-introduccion-a-la-robotica/
 │   ├── Introduccion-a-la-Robotica.pdf
-│   ├── codigo/          programas de Arduino (Capítulos 5 y 6)
+│   ├── codigo/          programas para el NodeMCU ESP8266 (Capítulos 5 y 6)
+│   ├── app/             app de control de MIT App Inventor (.aia y .apk)
 │   └── chasis/          modelos STL del chasis del autor
 └── guia-2-robots-articulados/
     ├── Robots-Articulados.pdf
@@ -33,9 +34,12 @@ Cada carpeta de guía tiene su propio README con el detalle de cada archivo.
 
 ## Qué necesitas
 
-- **Arduino IDE** y una placa **Arduino UNO** para los archivos `.ino`. Cada
-  programa está dentro de una carpeta con su mismo nombre, porque el IDE así
-  lo exige: ábrelo desde ahí, sin moverlo ni renombrarlo.
+- **Arduino IDE** para los archivos `.ino`: la guía 1 usa un **NodeMCU
+  ESP8266** (con el paquete del ESP8266 instalado en el IDE) y la guía 2 un
+  **Arduino UNO**. Cada programa está dentro de una carpeta con su mismo
+  nombre, porque el IDE así lo exige: ábrelo desde ahí, sin moverlo ni
+  renombrarlo.
+- Un **celular Android** para la app de la guía 1.
 - **Python 3** para los archivos `.py` de la guía 2. Los de cinemática solo usan
   la biblioteca estándar; los que hablan con el brazo necesitan además
   `pyserial` (`pip install pyserial`).

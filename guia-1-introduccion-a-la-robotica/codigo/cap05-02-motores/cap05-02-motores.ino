@@ -1,11 +1,12 @@
-// Control de los dos motores DC vía el módulo L298N (ver Tabla 4.2, Capítulo 4).
-const int ENA = 10, IN1 = 8, IN2 = 9;  // Motor izquierdo
-const int ENB = 5,  IN3 = 6, IN4 = 7;  // Motor derecho
+// Control de los dos motores DC con el módulo L298N (ver Tabla 4.2, Capítulo 4).
+const int ENA = D8, IN1 = D7, IN2 = D6;  // Motor izquierdo
+const int ENB = D3, IN3 = D5, IN4 = D4;  // Motor derecho
 
-// Mueve un motor: adelante o atrás, a la velocidad indicada (0-255).
+// Mueve un motor hacia adelante o hacia atrás, con velocidad de 0 a 255.
+// En el robot del libro, IN1 en LOW e IN2 en HIGH hacen avanzar la rueda.
 void moverMotor(int in1, int in2, int en, int velocidad, bool adelante) {
-  digitalWrite(in1, adelante ? HIGH : LOW);
-  digitalWrite(in2, adelante ? LOW : HIGH);
+  digitalWrite(in1, adelante ? LOW : HIGH);
+  digitalWrite(in2, adelante ? HIGH : LOW);
   analogWrite(en, velocidad);
 }
 
@@ -35,6 +36,7 @@ void detener() {
 }
 
 void setup() {
+  analogWriteRange(255);  // velocidades de 0 a 255, igual que en un Arduino
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(ENA, OUTPUT);
