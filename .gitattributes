@@ -1,0 +1,10 @@
+# Texto con fin de línea normalizado
+* text=auto
+
+# Binarios: sin conversión de fin de línea ni diff de texto
+*.pdf binary
+*.stl binary
+*.STL binary
+*.ods binary
+*.png binary
+*.jpg binary
